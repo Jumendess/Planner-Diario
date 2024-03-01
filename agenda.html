@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Sua Agenda</title>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Página Principal</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="daily.html">Tarefas Diárias</a>
+            </li>
+            <!-- <li class="nav-item">
+              <a class="nav-link" href="weekly.html">Tarefas Semanais</a>
+            </li> -->
+            <!-- <li class="nav-item">
+              <a class="nav-link" href="monthly.html">Tarefas Mensais</a>
+            </li> -->
+            <li class="nav-item active">
+              <a class="nav-link" href="agenda.html">Agenda</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container mt-4">
+      <h1>Sua Agenda</h1>
+
+      <!-- Adicione uma div para o calendário -->
+      <div id="calendar"></div>
+
+      <!-- Modal para Adicionar Evento -->
+      <div class="modal" id="addEventModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Adicionar Evento</h4>
+              <button type="button" class="close" data-dismiss="modal">
+                &times;
+              </button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
+              <form id="addEventForm" onsubmit="return addCalendarEvent()">
+                <div class="form-group">
+                  <label for="eventName">Nome do Evento:</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="eventName"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="eventDate">Data do Evento:</label>
+                  <input
+                    type="date"
+                    class="form-control"
+                    id="eventDate"
+                    required
+                  />
+                </div>
+                <button type="submit" class="btn btn-primary">Adicionar</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        // Inicialize o calendário
+        var calendar = $("#calendar").fullCalendar({
+          header: {
+            left: "prev,next today",
+            center: "title",
+            right: "month,agendaWeek,agendaDay",
+          },
+          events: getCalendarEvents(),
+          dayClick: function (date, jsEvent, view) {
+            openAddEventModal(date);
+          },
+        });
+
+        // Função para obter eventos do armazenamento local
+        function getCalendarEvents() {
+          // Implemente a lógica para obter eventos do armazenamento local
+          // Por exemplo, use localStorage.getItem para recuperar eventos
+          // Certifique-se de formatar os eventos conforme necessário
+          return [
+            {
+              title: "Evento 1",
+              start: "2023-01-01T10:00:00",
+              end: "2023-01-01T12:00:00",
+            },
+            {
+              title: "Evento 2",
+              start: "2023-01-02T14:00:00",
+              end: "2023-01-02T16:00:00",
+            },
+            // Adicione mais eventos conforme necessário
+          ];
+        }
+
+        // Função para abrir o modal de adicionar evento
+        function openAddEventModal(date) {
+          $("#eventDate").val(moment(date).format("YYYY-MM-DD"));
+          $("#addEventModal").modal("show");
+        }
+
+        // Função para adicionar evento ao calendário
+        function addCalendarEvent() {
+          var eventName = $("#eventName").val();
+          var eventDate = $("#eventDate").val();
+
+          if (eventName.trim() !== "" && eventDate.trim() !== "") {
+            // Adicione a lógica para armazenar o evento no armazenamento local ou em um servidor
+            // Atualize o calendário
+            calendar.fullCalendar("renderEvent", {
+              title: eventName,
+              start: eventDate,
+              allDay: true, // Defina como true se o evento for de dia inteiro
+            });
+
+            // Feche o modal
+            $("#addEventModal").modal("hide");
+          }
+
+          return false;
+        }
+      });
+    </script>
+  </body>
+</html>

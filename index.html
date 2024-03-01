@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Seu Planejador Diário</title>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="index.html">Página Principal</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="daily.html">Tarefas Diárias</a>
+            </li>
+            <!-- <li class="nav-item">
+              <a class="nav-link" href="weekly.html">Tarefas Semanais</a>
+            </li> -->
+            <!-- <li class="nav-item">
+              <a class="nav-link" href="monthly.html">Tarefas Mensais</a>
+            </li> -->
+
+            <li class="nav-item">
+              <a class="nav-link" href="agenda.html">Agenda</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container mt-4">
+      <h1>Bem-vindo ao Seu Planejador Diário</h1>
+      <p>Escolha uma categoria acima para gerenciar suas tarefas.</p>
+
+      <!-- <div id="loginForm" class="mt-4">
+        <h2>Login</h2>
+        <form id="loginForm" onsubmit="return loginUser()">
+          <div class="form-group">
+            <label for="username">Usuário:</label>
+            <input type="text" class="form-control" id="username" required />
+          </div>
+          <div class="form-group">
+            <label for="password">Senha:</label>
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              required
+            />
+          </div>
+          <button type="submit" class="btn btn-primary">Entrar</button>
+        </form>
+      </div> -->
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+      function loginUser() {
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+
+        // Simples verificação de credenciais (não segura para uso real)
+        if (username === "seuUsuario" && password === "suaSenha") {
+          alert("Login bem-sucedido!");
+          setTimeout(function () {
+            window.location.href = "daily.html"; // Redirecionamento para daily.html
+          }, 1000); // Redirecionar após 1 segundo (ajuste conforme necessário)
+        } else {
+          alert("Credenciais inválidas. Tente novamente.");
+        }
+
+        return false; // Impede o envio do formulário
+      }
+    </script>
+  </body>
+</html>
